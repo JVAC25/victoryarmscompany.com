@@ -1,0 +1,4 @@
+# Internal design-reference comparisons: kept on disk for owner review, never published.
+docs/screenshots/qm-parity/
+__pycache__/
+*.pyc

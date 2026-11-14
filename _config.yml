@@ -1,0 +1,6 @@
+# GitHub Pages: publish the site only. Working files stay in the repository and off the public site.
+exclude:
+  - docs
+  - scripts
+  - README.md
+  - CLAUDE.md

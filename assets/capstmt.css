@@ -1,0 +1,92 @@
+/* One-page Capability Statement — US Letter. Same tokens as site.css, inverted for paper. */
+
+@page { size: 8.5in 11in; margin: 0; }
+
+html.cs, .cs body { background: var(--bg); }
+.cs body { color: var(--bg); font-size: 9pt; line-height: 1.36; }
+
+.sheet {
+  width: 8.5in; height: 11in; margin: 24px auto; background: var(--text); color: var(--bg);
+  display: flex; flex-direction: column; overflow: hidden;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+/* Header band: full-bleed ground, content held to the 0.5in margin */
+.band { background: var(--bg); color: var(--text); padding: 0.3in 0.5in 0.2in; }
+.band-top { display: flex; align-items: center; justify-content: space-between; gap: 0.2in; }
+.cs .lockup { gap: 0.12in; }
+.cs .lockup img { width: 0.52in; height: 0.52in; border-radius: 8px; }
+.cs .lockup-name { font-size: 27pt; }
+.cs .lockup-tag { font-size: 7.4pt; margin-top: 2pt; }
+.doc-title { text-align: right; }
+.doc-title .t { font-family: var(--font-display); font-size: 16pt; letter-spacing: 0.06em; line-height: 1; color: var(--text); }
+.cs .doc-title .d { margin-top: 3pt; font-size: 6.6pt; color: var(--muted); }
+
+.band-tiles { margin-top: 0.14in; display: grid; grid-template-columns: 1.4fr 0.8fr 1.25fr 1fr; gap: 0.1in; }
+.cs .tile { background: var(--surface); padding: 5pt 8pt; gap: 2pt; border-radius: 8px; }
+.cs .tile .value { font-size: 15pt; color: var(--gold); }
+.cs .tile .value.cream { color: var(--text); }
+.cs .tile .label { font-size: 6.2pt; color: var(--muted); }
+
+.body { flex: 1; padding: 0.2in 0.5in 0.5in; display: flex; flex-direction: column; gap: 0.13in; }
+
+.cs h2 {
+  font-family: var(--font-display); font-weight: 400; font-size: 14pt; line-height: 1; letter-spacing: 0.06em;
+  color: var(--bg); padding-bottom: 2.5pt; border-bottom: 1.5pt solid var(--red); margin-bottom: 5.5pt;
+}
+.cs .overview { font-size: 10pt; line-height: 1.4; }
+
+.cs .card-grid { grid-template-columns: repeat(3, 1fr); gap: 0.1in; }
+.cs .card { background: transparent; border-color: var(--border); border-radius: 8px; padding: 7pt 9pt; gap: 3.5pt; }
+.cs .card .codes { color: var(--red); font-size: 6.8pt; }
+.cs .card h3 { font-size: 10.2pt; color: var(--bg); }
+.cs .card ul { padding-left: 11pt; font-size: 8.7pt; line-height: 1.33; color: var(--surface-2); }
+.cs .card li + li { margin-top: 2.5pt; }
+
+.cs .diff-grid { grid-template-columns: repeat(4, 1fr); gap: 0.12in; }
+.cs .diff { border-top: 0; padding-top: 0; gap: 2pt; }
+.cs .diff h3 { font-size: 8.2pt; color: var(--red); }
+.cs .diff p { font-size: 8.7pt; line-height: 1.33; color: var(--surface-2); }
+.cs .direction { font-size: 8pt; color: var(--border); margin-top: 3pt; }
+
+.cs dl.data { border-color: var(--border); border-radius: 8px; }
+.cs .data-row { display: grid; grid-template-columns: 1.2in 1fr; border-color: var(--border); }
+.cs .data-row dt {
+  background: var(--bg); color: var(--text); padding: 3.5pt 9pt; font-size: 6.8pt;
+  display: flex; align-items: center;
+}
+.cs .data-row dd { padding: 3.5pt 9pt; font-size: 9pt; line-height: 1.3; color: var(--bg); }
+.cs .codes-inline { font-family: var(--font-label); font-size: 8pt; letter-spacing: 0.05em; word-spacing: 0.3em; }
+.cs .codes-inline b { font-weight: 600; color: var(--red); }
+
+.bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3in; }
+.cs .leader { gap: 2.5pt; }
+.cs .leader .name { font-size: 11.5pt; color: var(--bg); }
+.cs .leader .service { font-size: 7.2pt; color: var(--red); }
+.cs .leader .role { font-size: 9.4pt; color: var(--surface-2); }
+.cs .contact-lines { gap: 2.5pt; }
+.cs .contact-email { font-size: 11.5pt; color: var(--bg); }
+.cs .contact-meta { font-size: 9.4pt; color: var(--surface-2); }
+
+.foot {
+  margin-top: auto; border-top: 1pt solid var(--border); padding-top: 4pt;
+  display: flex; justify-content: space-between; gap: 8pt;
+  font-family: var(--font-label); font-size: 6.2pt; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--border);
+}
+
+.screen-bar { max-width: 8.5in; margin: 16px auto 0; display: flex; gap: 12px; padding: 0 8px; }
+.screen-bar .btn { height: 44px; font-size: 12px; letter-spacing: 0.12em; padding: 0 16px; }
+
+@media print {
+  html.cs, .cs body { background: var(--text); }
+  .cs body { font-size: 9pt; }
+  .screen-bar { display: none; }
+  .sheet { margin: 0; }
+  .cs .lockup-name { color: var(--text); }
+  .cs .lockup-tag { color: var(--gold); }
+  .cs .card ul, .cs .diff p, .cs .contact-meta, .cs .leader .role { color: var(--surface-2); }
+  .cs .card .codes, .cs .leader .service { color: var(--red); }
+  .cs .foot, .cs .direction { color: var(--border); }
+  .cs a { color: var(--bg); }
+}
