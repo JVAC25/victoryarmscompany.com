@@ -194,18 +194,14 @@ def build_index(v: dict) -> str:
 </div>
 </section>
 
-<figure class="band-photo">
-<picture>
-<source media="(min-width: 700px)" srcset="assets/img/band-staging-1920.jpg" width="1920" height="372">
-<img src="assets/img/band-staging-900.jpg" alt="Rows of transport containers staged under an open shelter" loading="lazy" width="900" height="450">
-</picture>
-</figure>
-
 <section class="section alt" id="differentiators">
 <div class="wrap">
 <h2>Differentiators</h2>
+<div class="diff-layout">
+<img class="diff-photo" src="assets/img/stinger-cases-1100.jpg" alt="Rows of Stinger missile shipping containers staged under an open shelter" loading="lazy" width="1100" height="1029">
 <div class="diff-grid">
 {diffs(cp["differentiators"])}
+</div>
 </div>
 {direction}
 </div>
