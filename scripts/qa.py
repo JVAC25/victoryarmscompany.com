@@ -145,7 +145,7 @@ def main() -> int:
         allowed = set(ent["naics"]) | set(re.findall(r"\b\d{6}\b", json.dumps(v["copy"])))
         six = set(re.findall(r"\b\d{6}\b", text))
         check(six <= allowed, f"{name}: no NAICS code beyond the short list in vac.json {sorted(six - allowed)}")
-        for pat in (r"expir", r"renewal", r"DIBBS[- ]registered", r"registered in DLA", r"FAR 19", r"U\.S\.C\.", r"marksmanship", r"instruction", r"commander"):
+        for pat in (r"expir", r"renewal", r"DIBBS[- ]registered", r"registered in DLA", r"FAR 19", r"U\.S\.C\.", r"marksmanship", r"instruction", r"commander", r"China", r"Russia", r"Iran", r"Korea"):
             check(not re.search(pat, text, re.I), f"{name}: no /{pat}/ on the page")
 
     # 4. fonts and license
