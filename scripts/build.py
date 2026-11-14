@@ -122,32 +122,19 @@ def lockup(ent: dict, href: str) -> str:
     )
 
 
-def naics_badges(ent: dict) -> str:
-    out = []
-    for code in ent["naics"]:
-        if code == ent["primary_naics"]:
-            out.append(badge(f"{code} Primary", cert=True))
-        else:
-            out.append(badge(code))
-    return f'<div class="code-list">{"".join(out)}</div>'
-
-
 def build_index(v: dict) -> str:
     ent, site, cp, pr = v["entity"], v["site"], v["copy"], v["principal"]
     pdf = "assets/VAC_CapabilityStatement.pdf"
     place = f'{ent["city"]}, {ent["state_name"]}'
     badges = "".join(badge(b["text"], b["cert"]) for b in cp["badges"])
-    psc = '<div class="code-list">' + "".join(badge(p) for p in ent["psc"]) + "</div>"
     direction = f'<p class="direction">{e(cp["direction"])}</p>' if cp.get("show_direction") else ""
     rows = "\n".join(
         [
             row("Legal name", e(ent["legal_name"])),
             row("UEI · CAGE", f'{e(ent["uei"])} · {e(ent["cage"])}'),
-            row("SAM.gov", f'{e(ent["sam_status"])} · registration expires {e(fmt_date(ent["sam_expiration"]))}'),
-            row("Certifications", f'{e(ent["certifications"])} (active, renewal {e(fmt_date(ent["cert_renewal"]))})'),
-            row("DLA DIBBS", f'{e(ent["dibbs"])} under CAGE {e(ent["cage"])}'),
-            row("NAICS (SAM.gov)", naics_badges(ent)),
-            row("PSC (SAM.gov)", psc),
+            row("SAM.gov", e(ent["sam_status"])),
+            row("Certifications", e(ent["certifications"])),
+            row("Primary NAICS", e(ent["primary_naics"])),
             row("Sourcing", e(ent["sourcing"])),
             row("Location", f'{e(place)} ({e(ent["region_note"])})'),
         ]
@@ -189,7 +176,7 @@ def build_index(v: dict) -> str:
 <div class="tile wide"><span class="value">{e(ent["uei"])}</span><span class="label">UEI</span></div>
 <div class="tile"><span class="value">{e(ent["cage"])}</span><span class="label">CAGE Code</span></div>
 <div class="tile"><span class="value">{e(ent["primary_naics"])}</span><span class="label">Primary NAICS</span></div>
-<div class="tile wide"><span class="value red">{e(ent["cert_short"])}</span><span class="label">SBA Certified · Renewal {e(fmt_date(ent["cert_renewal"]))}</span></div>
+<div class="tile wide"><span class="value red">{e(ent["cert_short"])}</span><span class="label">SBA Certified</span></div>
 </div>
 </div>
 </section>
@@ -262,17 +249,14 @@ def build_statement(v: dict) -> str:
     place = f'{ent["city"]}, {ent["state_name"]}'
     stamp = fmt_date(site["statement_date"])
     pdf = "assets/VAC_CapabilityStatement.pdf"
-    naics = " ".join(
-        f"<b>{e(c)} (primary)</b>" if c == ent["primary_naics"] else e(c) for c in ent["naics"]
-    )
-    psc = " ".join(e(p) for p in ent["psc"])
     direction = f'<p class="direction">{e(cp["direction"])}</p>' if cp.get("show_direction") else ""
     rows = "\n".join(
         [
-            row("SAM.gov", f'{e(ent["sam_status"])} · registration expires {e(fmt_date(ent["sam_expiration"]))} · DLA DIBBS {e(ent["dibbs"]).lower()}'),
-            row("Certifications", f'{e(ent["certifications"])} (active, renewal {e(fmt_date(ent["cert_renewal"]))})'),
-            row("NAICS (SAM.gov)", f'<span class="codes-inline">{naics}</span>'),
-            row("PSC (SAM.gov)", f'<span class="codes-inline">{psc}</span>'),
+            row("Legal name", e(ent["legal_name"])),
+            row("UEI · CAGE", f'{e(ent["uei"])} · {e(ent["cage"])}'),
+            row("SAM.gov", e(ent["sam_status"])),
+            row("Certifications", e(ent["certifications"])),
+            row("Primary NAICS", e(ent["primary_naics"])),
             row("Sourcing", e(ent["sourcing"])),
         ]
     )
@@ -302,7 +286,7 @@ def build_statement(v: dict) -> str:
 <div class="tile"><span class="value">{e(ent["cage"])}</span><span class="label">CAGE Code</span></div>
 <div class="tile"><span class="value">{e(ent["primary_naics"])}</span><span class="label">Primary NAICS</span></div>
 <div class="tile"><span class="value cream">{e(ent["cert_short"])}</span><span class="label">SBA Certified</span></div>
-<div class="tile"><span class="value cream">{e(ent["sam_status"])}</span><span class="label">SAM.gov · to {e(fmt_date(ent["sam_expiration"]))}</span></div>
+<div class="tile"><span class="value cream">{e(ent["sam_status"])}</span><span class="label">SAM.gov Registration</span></div>
 </div>
 </header>
 
@@ -367,9 +351,6 @@ def build_statement(v: dict) -> str:
 def main() -> int:
     v = json.loads((ROOT / "data" / "vac.json").read_text(encoding="utf-8"))
     ent, site = v["entity"], v["site"]
-    if ent["primary_naics"] not in ent["naics"]:
-        print("error: primary NAICS is not in the NAICS list", file=sys.stderr)
-        return 1
     out = {
         "index.html": build_index(v),
         "capability-statement.html": build_statement(v),

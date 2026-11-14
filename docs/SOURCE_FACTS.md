@@ -7,6 +7,8 @@ Two sources only:
 
 No API key, tax ID, account number or confirmation number is recorded here or anywhere in this repository.
 
+**Owner correction, 2026-11-13:** `entity.naics`, `entity.psc`, `entity.sam_expiration`, `entity.cert_renewal` and `entity.dibbs` were removed from `data/vac.json` and are not published. The rows and lists below stay here only as the record of what SAM holds.
+
 ## Entity facts
 
 | `vac.json` field | Value | Source | SAM field | Fetched (UTC) |

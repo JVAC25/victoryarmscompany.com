@@ -6,6 +6,16 @@
 
 **What to look at:** `index.html` (the site), `assets/VAC_CapabilityStatement_20261113.pdf` (one page), `docs/screenshots/site-375.png` and `site-1440.png`.
 
+## Owner corrections applied after first review (2026-11-13, second commit)
+
+These override anything below that says otherwise.
+
+- Set-Aside differentiator: the legal citations and the "active through" date are removed. It now reads "SBA-certified SDVOSB and VOSB. Eligible for SDVOSB, VOSB and small-business set-asides."
+- Company Data is cut to: legal name, UEI and CAGE, SAM.gov Active, certifications, primary NAICS, sourcing, location. The full NAICS list and the PSC list are gone from the site, the PDF and `data/vac.json`.
+- No expiration or renewal dates anywhere (SAM and SBA).
+- No statement that VAC is registered in DIBBS (badge, data row and differentiator removed). DIBBS still appears as the channel VAC quotes through, in the subhead, the overview and the third competency card.
+- Decision 3 and counsel flag 1 below no longer apply, because the code lists are not published.
+
 ## Decisions waiting on the owner
 
 | # | Decision | What was built (default) |

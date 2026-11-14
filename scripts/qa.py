@@ -141,11 +141,12 @@ def main() -> int:
         text = " ".join(pg.text)
         for key in ("uei", "cage", "primary_naics", "email", "phone", "legal_name"):
             check(str(ent[key]) in text, f"{name}: shows {key} from vac.json")
-        # every 6-digit code and PSC-like token on the page must be in vac.json
+        # the only 6-digit codes allowed on a page are the primary NAICS and the card codes in vac.json
+        allowed = {ent["primary_naics"]} | set(re.findall(r"\b\d{6}\b", json.dumps(v["copy"])))
         six = set(re.findall(r"\b\d{6}\b", text))
-        check(six <= set(ent["naics"]), f"{name}: every 6-digit code is a NAICS in vac.json {sorted(six - set(ent['naics']))}")
-        check(all(c in text for c in ent["naics"]), f"{name}: full NAICS list present ({len(ent['naics'])})")
-        check(all(re.search(rf"\b{c}\b", text) for c in ent["psc"]), f"{name}: full PSC list present ({len(ent['psc'])})")
+        check(six <= allowed, f"{name}: no NAICS code beyond the primary and the card codes {sorted(six - allowed)}")
+        for pat in (r"expir", r"renewal", r"DIBBS[- ]registered", r"registered in DLA", r"FAR 19", r"U\.S\.C\."):
+            check(not re.search(pat, text, re.I), f"{name}: no /{pat}/ on the page")
 
     # 4. fonts and license
     fonts = sorted(p.name for p in (ROOT / "assets" / "fonts").glob("*.woff2"))

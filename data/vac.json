@@ -14,20 +14,9 @@
     "uei": "ZZQAKXV8EJ41",
     "cage": "02S54",
     "sam_status": "Active",
-    "sam_expiration": "2027-10-05",
     "primary_naics": "611699",
-    "naics": [
-      "611699", "325920", "332992", "332993", "332994", "333517", "336414", "336415",
-      "423910", "423990", "459110", "541330", "541715", "561210", "611430"
-    ],
-    "psc": [
-      "1305", "1310", "1315", "1320", "1337", "1338", "1340", "1376", "1390", "1395", "1398", "1410",
-      "1420", "1550", "3408", "3693", "AC12", "AC13", "U005", "U006", "U008", "U009", "U099"
-    ],
     "certifications": "SBA-certified SDVOSB · VOSB",
     "cert_short": "SDVOSB · VOSB",
-    "cert_renewal": "2028-12-15",
-    "dibbs": "Registered",
     "city": "Jacksonville",
     "state": "NC",
     "state_name": "North Carolina",
@@ -47,10 +36,18 @@
   },
   "copy": {
     "badges": [
-      {"text": "SBA-Certified SDVOSB", "cert": true},
-      {"text": "VOSB", "cert": true},
-      {"text": "SAM.gov Active", "cert": false},
-      {"text": "DLA DIBBS Registered", "cert": false}
+      {
+        "text": "SBA-Certified SDVOSB",
+        "cert": true
+      },
+      {
+        "text": "VOSB",
+        "cert": true
+      },
+      {
+        "text": "SAM.gov Active",
+        "cert": false
+      }
     ],
     "headline": "Small-Arms Ammunition, Tactical Equipment & Marksmanship Training",
     "subhead": "SBA-certified SDVOSB quoting DLA and agency requirements through DIBBS and SAM.gov. Located in Jacksonville, NC, outside MCB Camp Lejeune.",
@@ -89,11 +86,11 @@
     "differentiators": [
       {
         "title": "Set-Aside Eligible",
-        "text": "SBA-certified SDVOSB and VOSB (FAR 19.14; VA Veterans First, 38 U.S.C. 8127). Certification active through Dec 2028."
+        "text": "SBA-certified SDVOSB and VOSB. Eligible for SDVOSB, VOSB and small-business set-asides."
       },
       {
         "title": "Ready to Quote",
-        "text": "Active in SAM.gov and registered in DLA DIBBS under CAGE 02S54. Electronic quotes on automated RFQs."
+        "text": "Active in SAM.gov under CAGE 02S54. Electronic quotes on DLA automated RFQs."
       },
       {
         "title": "Local to Camp Lejeune",
