@@ -1,735 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Victory Arms Company LLC - Service-Disabled Veteran-Owned Small Business specializing in ammunition supply, tactical equipment, and professional firearms training for federal, state, and local government.">
-    <title>Victory Arms Company LLC | SDVOSB Federal Contractor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --red: #E63946;
-            --dark: #2B2D2F;
-            --light: #F8F9FA;
-            --white: #FFFFFF;
-            --gray: #6C757D;
-            --border: #DEE2E6;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        /* Header */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--dark);
-        }
-
-        .logo-bar {
-            width: 4px;
-            height: 28px;
-            background: var(--red);
-            border-radius: 2px;
-        }
-
-        .logo-text {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .header-ids {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        .header-ids span {
-            margin-left: 1rem;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, var(--dark) 0%, #1a1b1c 100%);
-            color: var(--white);
-            padding: 4rem 1.5rem;
-        }
-
-        .hero-content {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--red);
-            color: var(--white);
-            padding: 0.4rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            max-width: 700px;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            border-left: 3px solid var(--red);
-            padding-left: 1rem;
-        }
-
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        section {
-            padding: 3.5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-bar {
-            width: 4px;
-            height: 24px;
-            background: var(--red);
-            border-radius: 2px;
-        }
-
-        h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--dark);
-        }
-
-        /* Two Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .two-col {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        /* Capabilities */
-        .capability-list {
-            list-style: none;
-        }
-
-        .capability-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .capability-list li:last-child {
-            border-bottom: none;
-        }
-
-        .capability-list li::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            background: var(--red);
-            border-radius: 50%;
-            margin-top: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* NAICS Grid */
-        .naics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-
-        .naics-item {
-            background: var(--light);
-            padding: 1rem 1.25rem;
-            border-left: 3px solid var(--red);
-        }
-
-        .naics-code {
-            font-weight: 700;
-            color: var(--red);
-            font-size: 1.1rem;
-        }
-
-        .naics-desc {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .cert-item {
-            background: var(--light);
-            padding: 1rem 1.25rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .cert-item.pending {
-            border: 2px dashed var(--border);
-            background: var(--white);
-        }
-
-        .cert-item .status {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--gray);
-            font-weight: 400;
-            margin-top: 0.25rem;
-        }
-
-        /* Personnel */
-        .personnel-card {
-            background: var(--light);
-            padding: 2rem;
-        }
-
-        .personnel-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .personnel-title {
-            color: var(--red);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .personnel-role {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .credentials-list {
-            list-style: none;
-        }
-
-        .credentials-list li {
-            padding: 0.4rem 0;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .credentials-list li::before {
-            content: "—";
-            color: var(--red);
-            font-weight: 700;
-        }
-
-        /* Past Performance */
-        .performance-block {
-            margin-bottom: 2rem;
-        }
-
-        .performance-block:last-child {
-            margin-bottom: 0;
-        }
-
-        .performance-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--dark);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .metric {
-            background: var(--light);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--red);
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* Differentiators */
-        .diff-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .diff-list li {
-            background: var(--dark);
-            color: var(--white);
-            padding: 1.25rem 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .diff-list li::before {
-            content: "✓";
-            color: var(--red);
-            font-size: 1.1rem;
-        }
-
-        /* CTA */
-        .cta-section {
-            background: var(--light);
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--red);
-            color: var(--white);
-            padding: 0.9rem 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background: #c5303c;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--dark);
-            color: var(--dark);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .footer-logo .logo-bar {
-            background: var(--red);
-        }
-
-        .footer-logo .logo-text {
-            color: var(--white);
-            font-size: 1rem;
-        }
-
-        .footer-contact {
-            text-align: right;
-        }
-
-        .footer-contact a {
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .footer-contact a:hover {
-            color: var(--red);
-        }
-
-        .footer-contact p {
-            margin: 0.25rem 0;
-            font-size: 0.95rem;
-        }
-
-        .footer-ids {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-            
-            .hero-stats {
-                gap: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 1.4rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-contact {
-                text-align: center;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 0.75rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victory Arms Company LLC | SBA-Certified SDVOSB | Ammunition, Tactical Equipment, Marksmanship Training</title>
+<meta name="description" content="Victory Arms Company LLC is an SBA-certified Service-Disabled Veteran-Owned Small Business in Jacksonville, NC. Ammunition and tactical equipment supply, firearms and marksmanship training, and federal supply through DLA DIBBS. UEI ZZQAKXV8EJ41, CAGE 02S54.">
+<link rel="canonical" href="https://victoryarmscompany.com/">
+<meta name="theme-color" content="#0F0E0C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Victory Arms Company LLC">
+<meta property="og:title" content="Victory Arms Company LLC | SBA-Certified SDVOSB | Ammunition, Tactical Equipment, Marksmanship Training">
+<meta property="og:description" content="Victory Arms Company LLC is an SBA-certified Service-Disabled Veteran-Owned Small Business in Jacksonville, NC. Ammunition and tactical equipment supply, firearms and marksmanship training, and federal supply through DLA DIBBS. UEI ZZQAKXV8EJ41, CAGE 02S54.">
+<meta property="og:url" content="https://victoryarmscompany.com/">
+<meta property="og:image" content="https://victoryarmscompany.com/assets/vac-logo.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="assets/vac-logo.png">
+<link rel="preload" href="assets/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Victory Arms Company LLC","legalName":"Victory Arms Company LLC","url":"https://victoryarmscompany.com/","logo":"https://victoryarmscompany.com/assets/vac-logo.png","email":"contracts@victoryarmscompany.com","telephone":"+19107624050","naics":"611699","address":{"@type":"PostalAddress","addressLocality":"Jacksonville","addressRegion":"NC","addressCountry":"US"},"identifier":[{"@type":"PropertyValue","propertyID":"UEI","name":"SAM.gov Unique Entity ID","value":"ZZQAKXV8EJ41"},{"@type":"PropertyValue","propertyID":"CAGE","name":"CAGE Code","value":"02S54"}],"contactPoint":{"@type":"ContactPoint","contactType":"Contracting","email":"contracts@victoryarmscompany.com","telephone":"+19107624050"}}</script>
 </head>
 <body>
-
-<header>
-    <div class="header-content">
-        <a href="#" class="logo">
-            <div class="logo-bar"></div>
-            <span class="logo-text">Victory Arms Company</span>
-        </a>
-        <div class="header-ids">
-            <span>UEI: ZZQAKXV8EJ41</span>
-            <span>CAGE: 02S54</span>
-        </div>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="lockup" href="#top"><img src="assets/vac-logo.png" alt="Victory Arms Company LLC logo" width="40" height="40"><span><span class="lockup-name">VICTORY ARMS COMPANY</span><span class="lockup-tag">Service-Disabled Veteran-Owned Small Business</span></span></a>
+<div class="header-right">
+<div class="ids"><span>UEI <b>ZZQAKXV8EJ41</b></span><span>CAGE <b>02S54</b></span></div>
+<nav class="nav" aria-label="Primary">
+<a href="#capabilities">Capabilities</a>
+<a href="#data">Company Data</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</div>
 </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">Service-Disabled Veteran-Owned Small Business</div>
-        <h1>Mission-Ready Solutions for Government & Defense</h1>
-        <p>Ammunition supply, tactical equipment, and professional firearms training — delivered with military precision by a retired USMC Captain.</p>
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-number">3,000+</div>
-                <div class="stat-label">Marines Trained</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">76,366</div>
-                <div class="stat-label">Rounds Expended Safely</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">$30M+</div>
-                <div class="stat-label">Property Accountability</div>
-            </div>
-        </div>
-    </div>
+<main id="main">
+<section class="hero" id="top">
+<div class="wrap">
+<div class="badges"><span class="badge cert">SBA-Certified SDVOSB</span><span class="badge cert">VOSB</span><span class="badge">SAM.gov Active</span><span class="badge">DLA DIBBS Registered</span></div>
+<h1>Small-Arms Ammunition, Tactical Equipment &amp; Marksmanship Training</h1>
+<p class="sub">SBA-certified SDVOSB quoting DLA and agency requirements through DIBBS and SAM.gov. Located in Jacksonville, NC, outside MCB Camp Lejeune.</p>
+<div class="btn-row">
+<a class="btn primary" href="assets/VAC_CapabilityStatement.pdf">Download Capability Statement (PDF)</a>
+<a class="btn" href="mailto:contracts@victoryarmscompany.com">Contact Contracting</a>
+</div>
+</div>
 </section>
 
-<main>
+<section class="tiles" aria-label="Identifiers">
+<div class="wrap">
+<div class="tile-grid">
+<div class="tile wide"><span class="value">ZZQAKXV8EJ41</span><span class="label">UEI</span></div>
+<div class="tile"><span class="value">02S54</span><span class="label">CAGE Code</span></div>
+<div class="tile"><span class="value">611699</span><span class="label">Primary NAICS</span></div>
+<div class="tile wide"><span class="value red">SDVOSB · VOSB</span><span class="label">SBA Certified · Renewal 15 Dec 2028</span></div>
+</div>
+</div>
+</section>
 
-    <section id="capabilities">
-        <div class="two-col">
-            <div>
-                <div class="section-header">
-                    <div class="section-bar"></div>
-                    <h2>Core Capabilities</h2>
-                </div>
-                <ul class="capability-list">
-                    <li>Ammunition Supply (9mm, 5.56, 7.62, 12 ga, .308)</li>
-                    <li>Small Arms & Ordnance Procurement</li>
-                    <li>Tactical Equipment & Ballistic Protection</li>
-                    <li>Firearms & Tactical Training Programs</li>
-                    <li>Concealed Carry Instruction (USCCA Certified)</li>
-                    <li>Professional Development Training (LE/Gov)</li>
-                </ul>
-            </div>
-            <div>
-                <div class="section-header">
-                    <div class="section-bar"></div>
-                    <h2>Company Overview</h2>
-                </div>
-                <p>Victory Arms Company LLC is a Service-Disabled Veteran-Owned Small Business specializing in ammunition supply, small arms and ordnance, tactical equipment, and professional firearms training.</p>
-                <br>
-                <p>Founded by a retired USMC Captain with 12 years of military leadership — including command of 200+ Marines through combat training — we deliver mission-ready solutions for federal, state, and local government clients.</p>
-            </div>
-        </div>
-    </section>
+<section class="section" id="capabilities">
+<div class="wrap">
+<h2>Core Competencies</h2>
+<div class="card-grid">
+<article class="card"><span class="label codes">NAICS 423910 · PSC 1305</span><h3>Ammunition Supply &amp; Distribution</h3><ul><li>NSN-level sourcing of small-arms ammunition (PSC 1305), supplied by resale and distribution</li><li>Training ammunition, targets and range consumables</li><li>Manufacturer and distributor quotes turned around against RFQ close dates</li></ul></article>
+<article class="card"><span class="label codes">NAICS 611699 · PSC U099</span><h3>Firearms &amp; Marksmanship Training</h3><ul><li>Rifle, pistol and shotgun marksmanship for government, law-enforcement and unit customers, fundamentals through qualification tables</li><li>Range operations: range safety officer staffing, range safety briefs, cold-range procedures</li><li>Programs built to the customer&#x27;s qualification standard, delivered at the customer&#x27;s range or a contracted commercial range</li></ul></article>
+<article class="card"><span class="label codes">NAICS 423990 · DLA DIBBS</span><h3>Tactical Equipment &amp; Federal Supply</h3><ul><li>Weapon carry cases, drag bags, cleaning kits and maintenance items</li><li>DLA Land and Maritime and DLA Troop Support quoting through DIBBS (CAGE 02S54)</li><li>Commercial items quoted to SDVOSB set-asides and full-and-open RFQs</li></ul></article>
+</div>
+</div>
+</section>
 
-    <section id="naics">
-        <div class="section-header">
-            <div class="section-bar"></div>
-            <h2>NAICS Codes</h2>
-        </div>
-        <div class="naics-grid">
-            <div class="naics-item">
-                <span class="naics-code">332992</span>
-                <span class="naics-desc">Small Arms Ammunition Manufacturing</span>
-            </div>
-            <div class="naics-item">
-                <span class="naics-code">332994</span>
-                <span class="naics-desc">Small Arms & Ordnance Manufacturing</span>
-            </div>
-            <div class="naics-item">
-                <span class="naics-code">423910</span>
-                <span class="naics-desc">Sporting Goods Merchant Wholesalers</span>
-            </div>
-            <div class="naics-item">
-                <span class="naics-code">611699</span>
-                <span class="naics-desc">All Other Miscellaneous Schools</span>
-            </div>
-            <div class="naics-item">
-                <span class="naics-code">611430</span>
-                <span class="naics-desc">Professional Development Training</span>
-            </div>
-        </div>
-    </section>
+<section class="section alt" id="differentiators">
+<div class="wrap">
+<h2>Differentiators</h2>
+<div class="diff-grid">
+<div class="diff"><h3>Set-Aside Eligible</h3><p>SBA-certified SDVOSB and VOSB (FAR 19.14; VA Veterans First, 38 U.S.C. 8127). Certification active through Dec 2028.</p></div>
+<div class="diff"><h3>Ready to Quote</h3><p>Active in SAM.gov and registered in DLA DIBBS under CAGE 02S54. Electronic quotes on automated RFQs.</p></div>
+<div class="diff"><h3>Local to Camp Lejeune</h3><p>Jacksonville, NC. On-site coordination with MCB Camp Lejeune and MCAS New River units and contracting offices.</p></div>
+<div class="diff"><h3>Principal-Direct</h3><p>Every quote priced and signed by the owner. One point of contact from RFQ to delivery.</p></div>
+</div>
+<p class="direction">Company direction: building toward domestic, automated production capacity for critical defense needs.</p>
+</div>
+</section>
 
-    <section id="certifications">
-        <div class="section-header">
-            <div class="section-bar"></div>
-            <h2>Certifications & Registrations</h2>
-        </div>
-        <div class="cert-grid">
-            <div class="cert-item pending">
-                SDVOSB
-                <span class="status">SBA Certification Pending</span>
-            </div>
-            <div class="cert-item">
-                SAM.gov
-                <span class="status">Registered & Active</span>
-            </div>
-            <div class="cert-item">
-                USCCA Instructor
-                <span class="status">Certified #1885014</span>
-            </div>
-            <div class="cert-item">
-                Boots to Business
-                <span class="status">SBA Graduate</span>
-            </div>
-        </div>
-    </section>
+<section class="section" id="data">
+<div class="wrap">
+<h2>Company Data</h2>
+<dl class="data">
+<div class="data-row"><dt class="label">Legal name</dt><dd>Victory Arms Company LLC</dd></div>
+<div class="data-row"><dt class="label">UEI · CAGE</dt><dd>ZZQAKXV8EJ41 · 02S54</dd></div>
+<div class="data-row"><dt class="label">SAM.gov</dt><dd>Active · registration expires 5 Oct 2027</dd></div>
+<div class="data-row"><dt class="label">Certifications</dt><dd>SBA-certified SDVOSB · VOSB (active, renewal 15 Dec 2028)</dd></div>
+<div class="data-row"><dt class="label">DLA DIBBS</dt><dd>Registered under CAGE 02S54</dd></div>
+<div class="data-row"><dt class="label">NAICS (SAM.gov)</dt><dd><div class="code-list"><span class="badge cert">611699 Primary</span><span class="badge">325920</span><span class="badge">332992</span><span class="badge">332993</span><span class="badge">332994</span><span class="badge">333517</span><span class="badge">336414</span><span class="badge">336415</span><span class="badge">423910</span><span class="badge">423990</span><span class="badge">459110</span><span class="badge">541330</span><span class="badge">541715</span><span class="badge">561210</span><span class="badge">611430</span></div></dd></div>
+<div class="data-row"><dt class="label">PSC (SAM.gov)</dt><dd><div class="code-list"><span class="badge">1305</span><span class="badge">1310</span><span class="badge">1315</span><span class="badge">1320</span><span class="badge">1337</span><span class="badge">1338</span><span class="badge">1340</span><span class="badge">1376</span><span class="badge">1390</span><span class="badge">1395</span><span class="badge">1398</span><span class="badge">1410</span><span class="badge">1420</span><span class="badge">1550</span><span class="badge">3408</span><span class="badge">3693</span><span class="badge">AC12</span><span class="badge">AC13</span><span class="badge">U005</span><span class="badge">U006</span><span class="badge">U008</span><span class="badge">U009</span><span class="badge">U099</span></div></dd></div>
+<div class="data-row"><dt class="label">Sourcing</dt><dd>Domestic and allied sourcing only. No hardware, optics, electronics or software from China, Russia, Iran or North Korea.</dd></div>
+<div class="data-row"><dt class="label">Location</dt><dd>Jacksonville, North Carolina (Camp Lejeune region)</dd></div>
+</dl>
+</div>
+</section>
 
-    <section id="differentiators">
-        <div class="section-header">
-            <div class="section-bar"></div>
-            <h2>Why Victory Arms</h2>
-        </div>
-        <ul class="diff-list">
-            <li>100% Service-Disabled Veteran-Owned</li>
-            <li>3,000+ Marines Trained, Zero Incidents</li>
-            <li>76,000+ Rounds Live-Fire Experience</li>
-            <li>$30M+ Government Property Stewardship</li>
-            <li>PACOM/CENTCOM Deployment Experience</li>
-            <li>Secret Clearance (Eligible Reinstatement)</li>
-        </ul>
-    </section>
+<section class="section alt" id="leadership">
+<div class="wrap">
+<h2>Leadership</h2>
+<div class="leader">
+<span class="name">Jelani A. Staine, Principal</span>
+<span class="label service">Captain, U.S. Marine Corps (Veteran)</span>
+<span class="role">Owner and authorized signatory</span>
+</div>
+</div>
+</section>
 
-    <section id="personnel">
-        <div class="two-col">
-            <div>
-                <div class="section-header">
-                    <div class="section-bar"></div>
-                    <h2>Key Personnel</h2>
-                </div>
-                <div class="personnel-card">
-                    <div class="personnel-name">Jelani A. Staine</div>
-                    <div class="personnel-title">Captain, USMC (Retired)</div>
-                    <div class="personnel-role">Owner / CEO</div>
-                    <ul class="credentials-list">
-                        <li>Navy & Marine Corps Achievement Medal</li>
-                        <li>Company Commander, Co H, MCT BN</li>
-                        <li>Low Altitude Air Defense Officer (MOS 7204)</li>
-                        <li>31st MEU Deployment (USPACOM)</li>
-                        <li>Secret Clearance (Eligible Reinstatement)</li>
-                        <li>M.S. Cybersecurity (In Progress), Security+</li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <div class="section-header">
-                    <div class="section-bar"></div>
-                    <h2>Past Performance</h2>
-                </div>
-                <div class="performance-block">
-                    <div class="performance-title">Marine Combat Training Battalion</div>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-value">3,000+</div>
-                            <div class="metric-label">Marines Trained</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">76,366</div>
-                            <div class="metric-label">Rounds Expended</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">$3M+</div>
-                            <div class="metric-label">Property Managed</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="performance-block">
-                    <div class="performance-title">2d LAAD Battalion / 31st MEU</div>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-value">$30M+</div>
-                            <div class="metric-label">Vehicle Oversight</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">55%→100%</div>
-                            <div class="metric-label">Readiness Increase</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">2</div>
-                            <div class="metric-label">COCOM Deployments</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <h2>Ready to Work Together?</h2>
-        <p>Download our capability statement or contact us directly for contracting inquiries.</p>
-        <a href="Victory_Arms_Capability_Statement.pdf" class="btn" download>Download Capability Statement</a>
-        <a href="mailto:jelani@victoryweaponstraining.com" class="btn btn-outline">Contact Us</a>
-    </section>
-
+<section class="section contact" id="contact">
+<div class="wrap">
+<div class="contact-lines">
+<h2>Contracting Contact</h2>
+<a class="contact-email" href="mailto:contracts@victoryarmscompany.com">contracts@victoryarmscompany.com</a>
+<span class="contact-meta">(910) 762-4050 · Jacksonville, North Carolina</span>
+</div>
+<a class="btn primary" href="assets/VAC_CapabilityStatement.pdf">Download Capability Statement</a>
+</div>
+</section>
 </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <div class="logo-bar"></div>
-            <span class="logo-text">Victory Arms Company LLC</span>
-        </div>
-        <div class="footer-contact">
-            <p><a href="tel:347-219-1710">347-219-1710</a></p>
-            <p><a href="mailto:jelani@victoryweaponstraining.com">jelani@victoryweaponstraining.com</a></p>
-            <p class="footer-ids">UEI: ZZQAKXV8EJ41 | CAGE: 02S54</p>
-        </div>
-    </div>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 Victory Arms Company LLC</span>
+<span>SBA-certified SDVOSB · VOSB · UEI ZZQAKXV8EJ41 · CAGE 02S54</span>
+</div>
 </footer>
-
 </body>
 </html>

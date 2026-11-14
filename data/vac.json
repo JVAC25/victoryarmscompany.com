@@ -1,0 +1,110 @@
+{
+  "_about": "Single source of truth for index.html and capability-statement.html. Edit here, then run: python3 scripts/build.py. Every value traces to docs/SOURCE_FACTS.md (SAM.gov record) or the owner record of 2026-11-13.",
+  "site": {
+    "url": "https://victoryarmscompany.com/",
+    "title": "Victory Arms Company LLC | SBA-Certified SDVOSB | Ammunition, Tactical Equipment, Marksmanship Training",
+    "description": "Victory Arms Company LLC is an SBA-certified Service-Disabled Veteran-Owned Small Business in Jacksonville, NC. Ammunition and tactical equipment supply, firearms and marksmanship training, and federal supply through DLA DIBBS. UEI ZZQAKXV8EJ41, CAGE 02S54.",
+    "statement_date": "2026-11-13",
+    "copyright_year": "2026"
+  },
+  "entity": {
+    "legal_name": "Victory Arms Company LLC",
+    "wordmark": "Victory Arms Company",
+    "tagline": "Service-Disabled Veteran-Owned Small Business",
+    "uei": "ZZQAKXV8EJ41",
+    "cage": "02S54",
+    "sam_status": "Active",
+    "sam_expiration": "2027-10-05",
+    "primary_naics": "611699",
+    "naics": [
+      "611699", "325920", "332992", "332993", "332994", "333517", "336414", "336415",
+      "423910", "423990", "459110", "541330", "541715", "561210", "611430"
+    ],
+    "psc": [
+      "1305", "1310", "1315", "1320", "1337", "1338", "1340", "1376", "1390", "1395", "1398", "1410",
+      "1420", "1550", "3408", "3693", "AC12", "AC13", "U005", "U006", "U008", "U009", "U099"
+    ],
+    "certifications": "SBA-certified SDVOSB · VOSB",
+    "cert_short": "SDVOSB · VOSB",
+    "cert_renewal": "2028-12-15",
+    "dibbs": "Registered",
+    "city": "Jacksonville",
+    "state": "NC",
+    "state_name": "North Carolina",
+    "country": "US",
+    "region_note": "Camp Lejeune region",
+    "show_street_address": false,
+    "email": "contracts@victoryarmscompany.com",
+    "phone": "(910) 762-4050",
+    "phone_e164": "+19107624050",
+    "sourcing": "Domestic and allied sourcing only. No hardware, optics, electronics or software from China, Russia, Iran or North Korea."
+  },
+  "principal": {
+    "name": "Jelani A. Staine",
+    "title": "Principal",
+    "service": "Captain, U.S. Marine Corps (Veteran)",
+    "role": "Owner and authorized signatory"
+  },
+  "copy": {
+    "badges": [
+      {"text": "SBA-Certified SDVOSB", "cert": true},
+      {"text": "VOSB", "cert": true},
+      {"text": "SAM.gov Active", "cert": false},
+      {"text": "DLA DIBBS Registered", "cert": false}
+    ],
+    "headline": "Small-Arms Ammunition, Tactical Equipment & Marksmanship Training",
+    "subhead": "SBA-certified SDVOSB quoting DLA and agency requirements through DIBBS and SAM.gov. Located in Jacksonville, NC, outside MCB Camp Lejeune.",
+    "cta_primary": "Download Capability Statement (PDF)",
+    "cta_secondary": "Contact Contracting",
+    "overview": "Victory Arms Company LLC is an SBA-certified Service-Disabled Veteran-Owned Small Business in Jacksonville, North Carolina, outside MCB Camp Lejeune. VAC supplies small-arms ammunition and tactical equipment by resale and distribution, delivers firearms and marksmanship training to government, law-enforcement and unit customers, and quotes federal supply requirements through DLA DIBBS.",
+    "competencies": [
+      {
+        "codes": "NAICS 423910 · PSC 1305",
+        "title": "Ammunition Supply & Distribution",
+        "bullets": [
+          "NSN-level sourcing of small-arms ammunition (PSC 1305), supplied by resale and distribution",
+          "Training ammunition, targets and range consumables",
+          "Manufacturer and distributor quotes turned around against RFQ close dates"
+        ]
+      },
+      {
+        "codes": "NAICS 611699 · PSC U099",
+        "title": "Firearms & Marksmanship Training",
+        "bullets": [
+          "Rifle, pistol and shotgun marksmanship for government, law-enforcement and unit customers, fundamentals through qualification tables",
+          "Range operations: range safety officer staffing, range safety briefs, cold-range procedures",
+          "Programs built to the customer's qualification standard, delivered at the customer's range or a contracted commercial range"
+        ]
+      },
+      {
+        "codes": "NAICS 423990 · DLA DIBBS",
+        "title": "Tactical Equipment & Federal Supply",
+        "bullets": [
+          "Weapon carry cases, drag bags, cleaning kits and maintenance items",
+          "DLA Land and Maritime and DLA Troop Support quoting through DIBBS (CAGE 02S54)",
+          "Commercial items quoted to SDVOSB set-asides and full-and-open RFQs"
+        ]
+      }
+    ],
+    "differentiators": [
+      {
+        "title": "Set-Aside Eligible",
+        "text": "SBA-certified SDVOSB and VOSB (FAR 19.14; VA Veterans First, 38 U.S.C. 8127). Certification active through Dec 2028."
+      },
+      {
+        "title": "Ready to Quote",
+        "text": "Active in SAM.gov and registered in DLA DIBBS under CAGE 02S54. Electronic quotes on automated RFQs."
+      },
+      {
+        "title": "Local to Camp Lejeune",
+        "text": "Jacksonville, NC. On-site coordination with MCB Camp Lejeune and MCAS New River units and contracting offices."
+      },
+      {
+        "title": "Principal-Direct",
+        "text": "Every quote priced and signed by the owner. One point of contact from RFQ to delivery."
+      }
+    ],
+    "show_direction": true,
+    "direction": "Company direction: building toward domestic, automated production capacity for critical defense needs."
+  }
+}
