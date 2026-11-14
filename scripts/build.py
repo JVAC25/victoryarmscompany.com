@@ -69,7 +69,6 @@ def head(v: dict, *, title: str, description: str, canonical: str, css: list[str
         "logo": logo,
         "email": ent["email"],
         "telephone": ent["phone_e164"],
-        "naics": ent["primary_naics"],
         "address": {
             "@type": "PostalAddress",
             "addressLocality": ent["city"],
@@ -134,8 +133,7 @@ def build_index(v: dict) -> str:
             row("UEI · CAGE", f'{e(ent["uei"])} · {e(ent["cage"])}'),
             row("SAM.gov", e(ent["sam_status"])),
             row("Certifications", e(ent["certifications"])),
-            row("Primary NAICS", e(ent["primary_naics"])),
-            row("Sourcing", e(ent["sourcing"])),
+            row("NAICS", e(" · ".join(ent["naics"]))),
             row("Location", f'{e(place)} ({e(ent["region_note"])})'),
         ]
     )
@@ -175,7 +173,7 @@ def build_index(v: dict) -> str:
 <div class="tile-grid">
 <div class="tile wide"><span class="value">{e(ent["uei"])}</span><span class="label">UEI</span></div>
 <div class="tile"><span class="value">{e(ent["cage"])}</span><span class="label">CAGE Code</span></div>
-<div class="tile"><span class="value">{e(ent["primary_naics"])}</span><span class="label">Primary NAICS</span></div>
+<div class="tile"><span class="value">{e(ent["sam_status"])}</span><span class="label">SAM.gov</span></div>
 <div class="tile wide"><span class="value red">{e(ent["cert_short"])}</span><span class="label">SBA Certified</span></div>
 </div>
 </div>
@@ -256,8 +254,7 @@ def build_statement(v: dict) -> str:
             row("UEI · CAGE", f'{e(ent["uei"])} · {e(ent["cage"])}'),
             row("SAM.gov", e(ent["sam_status"])),
             row("Certifications", e(ent["certifications"])),
-            row("Primary NAICS", e(ent["primary_naics"])),
-            row("Sourcing", e(ent["sourcing"])),
+            row("NAICS", e(" · ".join(ent["naics"]))),
         ]
     )
     title = f'Capability Statement | {ent["legal_name"]}'
@@ -284,7 +281,6 @@ def build_statement(v: dict) -> str:
 <div class="band-tiles">
 <div class="tile"><span class="value">{e(ent["uei"])}</span><span class="label">UEI</span></div>
 <div class="tile"><span class="value">{e(ent["cage"])}</span><span class="label">CAGE Code</span></div>
-<div class="tile"><span class="value">{e(ent["primary_naics"])}</span><span class="label">Primary NAICS</span></div>
 <div class="tile"><span class="value cream">{e(ent["cert_short"])}</span><span class="label">SBA Certified</span></div>
 <div class="tile"><span class="value cream">{e(ent["sam_status"])}</span><span class="label">SAM.gov Registration</span></div>
 </div>

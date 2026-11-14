@@ -139,13 +139,13 @@ def main() -> int:
         missing = [s for s in pg.srcs if re.match(r"^[a-z]+:", s) or not (ROOT / s).is_file()]
         check(not missing, f"{name}: every stylesheet, image and icon is local and present {missing}")
         text = " ".join(pg.text)
-        for key in ("uei", "cage", "primary_naics", "email", "phone", "legal_name"):
+        for key in ("uei", "cage", "email", "phone", "legal_name"):
             check(str(ent[key]) in text, f"{name}: shows {key} from vac.json")
         # the only 6-digit codes allowed on a page are the primary NAICS and the card codes in vac.json
-        allowed = {ent["primary_naics"]} | set(re.findall(r"\b\d{6}\b", json.dumps(v["copy"])))
+        allowed = set(ent["naics"]) | set(re.findall(r"\b\d{6}\b", json.dumps(v["copy"])))
         six = set(re.findall(r"\b\d{6}\b", text))
-        check(six <= allowed, f"{name}: no NAICS code beyond the primary and the card codes {sorted(six - allowed)}")
-        for pat in (r"expir", r"renewal", r"DIBBS[- ]registered", r"registered in DLA", r"FAR 19", r"U\.S\.C\."):
+        check(six <= allowed, f"{name}: no NAICS code beyond the short list in vac.json {sorted(six - allowed)}")
+        for pat in (r"expir", r"renewal", r"DIBBS[- ]registered", r"registered in DLA", r"FAR 19", r"U\.S\.C\.", r"marksmanship", r"instruction", r"commander"):
             check(not re.search(pat, text, re.I), f"{name}: no /{pat}/ on the page")
 
     # 4. fonts and license

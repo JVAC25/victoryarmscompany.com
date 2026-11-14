@@ -6,6 +6,18 @@
 
 **What to look at:** `index.html` (the site), `assets/VAC_CapabilityStatement_20261113.pdf` (one page), `docs/screenshots/site-375.png` and `site-1440.png`.
 
+## Owner direction applied after second review (2026-11-13, third commit)
+
+This is the current state and overrides everything below.
+
+- **Supply only.** Training as a service is removed from the headline, overview, cards and page title.
+- **Three cards:** Weapon Accessories & Maintenance; Ammunition & Range Supply; Federal Supply Quoting.
+- **Differentiators:** Veteran-Led; Set-Aside Eligible; Domestic & Allied Sourcing; One Point of Contact. "Ready to Quote" and "Local to Camp Lejeune" are removed.
+- **Service background** is one line with no billet titles, in the pattern other SDVOSB statements use: "Led by a U.S. Marine Corps veteran with direct experience in weapons, ammunition and equipment accountability for operating and training units."
+- **NAICS** shows three codes only: 423990, 423910, 332994. The SAM primary (611699, a training-school code) is not shown because the page is supply only.
+- **"Company direction" line** is switched off (`show_direction` in `data/vac.json`).
+- Open point: 332994 is the code DLA puts on small-arms parts RFQs, and it is a manufacturing code. It is listed as a registered code, not as a capability. Counsel flag 2 still applies.
+
 ## Owner corrections applied after first review (2026-11-13, second commit)
 
 These override anything below that says otherwise.
