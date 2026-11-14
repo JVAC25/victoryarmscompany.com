@@ -27,7 +27,7 @@ FORBIDDEN = [
     r"quartermaster", r"pathfinder", r"sigint", r"googletagmanager", r"fbq\(", r"SAM-[0-9a-f]{8}-",
 ]
 TOKENS = {"#0F0E0C", "#1A1814", "#25221C", "#38342C", "#EFE5C6", "#B3A98F", "#CFAE55", "#B3121C", "#4F8A5B", "#7A776F"}
-VOID = {"meta", "link", "img", "br", "hr", "input"}
+VOID = {"meta", "link", "img", "br", "hr", "input", "source"}
 
 fails: list[str] = []
 
@@ -60,6 +60,7 @@ class Page(HTMLParser):
         self.ids: set[str] = set()
         self.text: list[str] = []
         self.scripts = 0
+        self.imgs: list[dict] = []
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -71,6 +72,10 @@ class Page(HTMLParser):
             self.srcs.append(a["href"])
         if tag in ("img", "script") and "src" in a:
             self.srcs.append(a["src"])
+        if tag == "source" and "srcset" in a:
+            self.srcs.append(a["srcset"])
+        if tag == "img":
+            self.imgs.append(a)
         if tag == "script" and a.get("type") != "application/ld+json":
             self.scripts += 1
         if tag not in VOID:
@@ -138,6 +143,8 @@ def main() -> int:
         check(not bad_links, f"{name}: every link is internal and resolves, or mailto:{ent['email']} {bad_links}")
         missing = [s for s in pg.srcs if re.match(r"^[a-z]+:", s) or not (ROOT / s).is_file()]
         check(not missing, f"{name}: every stylesheet, image and icon is local and present {missing}")
+        no_alt = [i.get("src") for i in pg.imgs if not i.get("alt") or not i.get("width") or not i.get("height")]
+        check(not no_alt, f"{name}: every image has alt text, width and height {no_alt}")
         text = " ".join(pg.text)
         for key in ("uei", "cage", "email", "phone", "legal_name"):
             check(str(ent[key]) in text, f"{name}: shows {key} from vac.json")
@@ -151,6 +158,13 @@ def main() -> int:
     # 4. fonts and license
     fonts = sorted(p.name for p in (ROOT / "assets" / "fonts").glob("*.woff2"))
     check(len(fonts) == 4 and (ROOT / "assets" / "fonts" / "OFL.txt").is_file(), f"self-hosted fonts + OFL license present {fonts}")
+
+    # 4b. photos: web-sized, metadata stripped (no EXIF block, so no location or device data)
+    photos = sorted((ROOT / "assets" / "img").glob("*.jpg"))
+    big = [p.name for p in photos if p.stat().st_size > 400_000]
+    exif = [p.name for p in photos if b"Exif\x00\x00" in p.read_bytes()[:65536]]
+    check(not big, f"photos are each under 400 KB ({len(photos)} files) {big}")
+    check(not exif, f"photos carry no EXIF metadata {exif}")
 
     # 5. PDF
     stamp = v["site"]["statement_date"].replace("-", "")

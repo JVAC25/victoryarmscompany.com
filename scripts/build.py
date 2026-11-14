@@ -158,6 +158,7 @@ def build_index(v: dict) -> str:
 <main id="main">
 <section class="hero" id="top">
 <div class="wrap">
+<div class="hero-copy">
 <div class="badges">{badges}</div>
 <h1>{e(cp["headline"])}</h1>
 <p class="sub">{e(cp["subhead"])}</p>
@@ -165,6 +166,11 @@ def build_index(v: dict) -> str:
 <a class="btn primary" href="{pdf}">{e(cp["cta_primary"])}</a>
 <a class="btn" href="mailto:{e(ent["email"])}">{e(cp["cta_secondary"])}</a>
 </div>
+</div>
+<picture class="hero-photo">
+<source media="(min-width: 1024px)" srcset="assets/img/hero-range-1000.jpg" width="1000" height="1250">
+<img src="assets/img/hero-range-900.jpg" alt="Belt-fed machine gun with linked ammunition and an ammunition can on a desert range" width="900" height="600">
+</picture>
 </div>
 </section>
 
@@ -187,6 +193,13 @@ def build_index(v: dict) -> str:
 </div>
 </div>
 </section>
+
+<figure class="band-photo">
+<picture>
+<source media="(min-width: 700px)" srcset="assets/img/band-staging-1920.jpg" width="1920" height="372">
+<img src="assets/img/band-staging-900.jpg" alt="Rows of transport containers staged under an open shelter" loading="lazy" width="900" height="450">
+</picture>
+</figure>
 
 <section class="section alt" id="differentiators">
 <div class="wrap">
