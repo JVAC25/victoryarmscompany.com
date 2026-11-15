@@ -157,8 +157,10 @@ def build_index(v: dict) -> str:
 
 <main id="main">
 <section class="hero" id="top">
+<div class="hero-bg"></div>
+<div class="hero-shade"></div>
+<div class="hero-fade"></div>
 <div class="wrap">
-<div class="hero-copy">
 <div class="badges">{badges}</div>
 <h1>{e(cp["headline"])}</h1>
 <p class="sub">{e(cp["subhead"])}</p>
@@ -166,11 +168,6 @@ def build_index(v: dict) -> str:
 <a class="btn primary" href="{pdf}">{e(cp["cta_primary"])}</a>
 <a class="btn" href="mailto:{e(ent["email"])}">{e(cp["cta_secondary"])}</a>
 </div>
-</div>
-<picture class="hero-photo">
-<source media="(min-width: 1024px)" srcset="assets/img/hero-range-1000.jpg" width="1000" height="1250">
-<img src="assets/img/hero-range-900.jpg" alt="Belt-fed machine gun with linked ammunition and an ammunition can on a desert range" width="900" height="600">
-</picture>
 </div>
 </section>
 
@@ -194,14 +191,15 @@ def build_index(v: dict) -> str:
 </div>
 </section>
 
-<section class="section alt" id="differentiators">
+<section class="section alt has-photo" id="differentiators">
+<div class="photo-head">
+<div class="photo-head-bg"></div>
+<div class="photo-head-shade"></div>
+<div class="wrap"><h2>Differentiators</h2></div>
+</div>
 <div class="wrap">
-<h2>Differentiators</h2>
-<div class="diff-layout">
-<img class="diff-photo" src="assets/img/stinger-cases-1100.jpg" alt="Rows of Stinger missile shipping containers staged under an open shelter" loading="lazy" width="1100" height="1029">
 <div class="diff-grid">
 {diffs(cp["differentiators"])}
-</div>
 </div>
 {direction}
 </div>

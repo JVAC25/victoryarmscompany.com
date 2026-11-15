@@ -127,29 +127,56 @@ h1, h2, h3, p, ul { margin: 0; }
 .btn.primary:hover { border-color: var(--text); }
 .btn-row { display: flex; flex-direction: column; gap: 12px; }
 
-/* Hero */
-.hero { padding: 40px 0 28px; }
-.hero .wrap { display: flex; flex-direction: column; gap: 22px; }
+/* Hero: photo background, dimmed, with the copy at the lower left */
+.hero {
+  position: relative; overflow: hidden; display: flex; align-items: flex-end;
+  min-height: clamp(600px, 88vh, 760px); background: var(--bg);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--bg) url("img/hero-range-900.jpg") 50% 100% / cover no-repeat;
+  filter: brightness(0.5);
+}
+.hero-shade {
+  position: absolute; inset: 0; opacity: 0.55;
+  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 45%, transparent 100%);
+}
+.hero-fade {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 30%;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+}
+.hero .wrap {
+  position: relative; z-index: 1; width: 100%;
+  display: flex; flex-direction: column; gap: 22px; padding-top: 96px; padding-bottom: 36px;
+}
 .hero h1 {
   font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 7vw, 88px);
-  line-height: 0.95; letter-spacing: 0.04em; max-width: 960px;
+  line-height: 0.95; letter-spacing: 0.04em; max-width: 900px;
 }
-.hero .sub { font-size: 18px; line-height: 1.45; color: var(--muted); max-width: 720px; }
+.hero .sub { font-size: 18px; line-height: 1.45; color: var(--text); max-width: 640px; }
+.hero .btn { background: var(--bg); }
+.hero .btn.primary { background: var(--red); }
+.hero .badge { background: var(--bg); }
 
-.hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-.hero-photo { display: block; }
-.hero-photo img {
-  display: block; width: 100%; height: auto;
-  border: 1px solid var(--border); border-radius: 10px;
+/* Photo band that heads a section */
+.section.has-photo { padding-top: 0; }
+.photo-head {
+  position: relative; overflow: hidden; display: flex; align-items: flex-end;
+  min-height: 300px; margin-bottom: 32px; background: var(--bg);
 }
-.diff-layout { display: flex; flex-direction: column; gap: 24px; }
-.diff-photo {
-  display: block; width: 100%; height: auto;
-  border: 1px solid var(--border); border-radius: 10px;
+.photo-head-bg {
+  position: absolute; inset: 0;
+  background: var(--bg) url("img/stinger-cases-1000.jpg") 50% 70% / cover no-repeat;
+  filter: brightness(0.8);
 }
+.photo-head-shade {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 55%;
+  background: linear-gradient(to top, var(--surface) 0%, transparent 100%);
+}
+.photo-head .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 4px; }
 
 /* Metric tiles */
-.tiles { padding: 0 0 40px; }
+.tiles { padding: 24px 0 40px; }
 .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .tile {
   background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
@@ -227,18 +254,12 @@ dl.data { margin: 0; }
   }
   .nav a { color: var(--muted); }
   .nav a:hover { color: var(--text); }
-  .hero { padding: 64px 0 48px; }
-  .hero .wrap {
-    display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
-    gap: 48px; align-items: center;
-  }
-  .hero-copy { gap: 28px; }
-  .hero h1 { font-size: clamp(48px, 5.4vw, 76px); }
-  .diff-layout {
-    display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: 48px; align-items: center;
-  }
-  .diff-layout .diff-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 32px; }
+  .hero { min-height: clamp(640px, 88vh, 820px); }
+  .hero-bg { background-image: url("img/hero-range-2000.jpg"); background-position: 50% 62%; filter: brightness(0.6); }
+  .hero-shade { opacity: 0.92; background: linear-gradient(90deg, var(--bg) 0%, var(--bg) 22%, transparent 78%); }
+  .hero .wrap { gap: 28px; padding-top: 140px; padding-bottom: 56px; }
+  .photo-head { min-height: 440px; margin-bottom: 40px; }
+  .photo-head-bg { background-image: url("img/stinger-cases-1800.jpg"); background-position: 50% 68%; }
   .hero .sub { font-size: 19px; }
   .btn { font-size: 14px; letter-spacing: 0.16em; padding: 0 24px; }
   .btn-row { flex-direction: row; flex-wrap: wrap; }
@@ -261,7 +282,9 @@ dl.data { margin: 0; }
 @media print {
   html, body { background: var(--text); color: var(--bg); }
   body { font-size: 11pt; }
-  .skip, .nav, .btn-row, .contact .btn, .hero-photo, .diff-photo { display: none; }
+  .skip, .nav, .btn-row, .contact .btn, .hero-bg, .hero-shade, .hero-fade, .photo-head-bg, .photo-head-shade { display: none; }
+  .hero, .photo-head { min-height: 0; display: block; background: transparent; }
+  .hero .wrap { padding-top: 0; padding-bottom: 0; }
   .site-header, .site-footer, .section.alt, .card, .tile { background: transparent; }
   .lockup-name, .ids b, .leader .role, .card h3 { color: var(--bg); }
   .lockup-tag, .card .codes, .leader .service, .badge.cert, .tile .value { color: var(--red); }
