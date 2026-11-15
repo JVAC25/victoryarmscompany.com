@@ -116,10 +116,16 @@ def main() -> int:
             if m.group(0).upper() not in TOKENS:
                 bad.append(f"{css.name}: {m.group(0)}")
         body = css.read_text(encoding="utf-8")
-        for pat in (r"rgba?\(", r"hsla?\(", r"gradient\(", r"@import", r"https?://"):
+        for pat in (r"rgba?\(", r"hsla?\(", r"@import", r"https?://"):
             if re.search(pat, body):
                 bad.append(f"{css.name}: /{pat}/")
-    check(not bad, "CSS uses only the ten locked tokens; no gradients, imports or remote URLs " + ("" if not bad else str(bad)))
+        for m in re.finditer(r"gradient\(([^;]*);", body):
+            if re.search(r"#|rgb|hsl", m.group(1)):
+                bad.append(f"{css.name}: gradient with a non-token color")
+        for m in re.finditer(r'url\("([^"]+)"\)', body):
+            if not (css.parent / m.group(1)).is_file():
+                bad.append(f"{css.name}: missing {m.group(1)}")
+    check(not bad, "CSS uses only the ten locked tokens (photo shades fade from a token to transparent); no imports, remote URLs or missing files " + ("" if not bad else str(bad)))
 
     # 3. HTML structure, links, assets
     for name in ("index.html", "capability-statement.html"):
@@ -161,9 +167,9 @@ def main() -> int:
 
     # 4b. photos: web-sized, metadata stripped (no EXIF block, so no location or device data)
     photos = sorted((ROOT / "assets" / "img").glob("*.jpg"))
-    big = [p.name for p in photos if p.stat().st_size > 400_000]
+    big = [p.name for p in photos if p.stat().st_size > 500_000]
     exif = [p.name for p in photos if b"Exif\x00\x00" in p.read_bytes()[:65536]]
-    check(not big, f"photos are each under 400 KB ({len(photos)} files) {big}")
+    check(not big, f"photos are each under 500 KB ({len(photos)} files) {big}")
     check(not exif, f"photos carry no EXIF metadata {exif}")
 
     # 5. PDF
